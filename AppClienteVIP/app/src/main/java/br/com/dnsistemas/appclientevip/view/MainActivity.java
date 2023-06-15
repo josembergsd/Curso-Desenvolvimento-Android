@@ -1,8 +1,10 @@
-package br.com.dnsistemas.appclientevip;
+package br.com.dnsistemas.appclientevip.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import br.com.dnsistemas.appclientevip.R;
 
 public class MainActivity extends AppCompatActivity {
 
