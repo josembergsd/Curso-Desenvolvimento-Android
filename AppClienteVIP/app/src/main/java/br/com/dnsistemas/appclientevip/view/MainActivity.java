@@ -10,11 +10,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.dnsistemas.appclientevip.R;
+import br.com.dnsistemas.appclientevip.controller.PessoaContoller;
 import br.com.dnsistemas.appclientevip.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
     Pessoa pessoa;
+    PessoaContoller controller;
 
     EditText editText_primeiroNome;
     EditText editText_sobrenome;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        controller = new PessoaContoller();
         //Mock de Pessoa
         pessoa = new Pessoa("Josemberg", "Sousa Duarte", "Android", "86-99920-8114");
         initComponents();
@@ -44,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
             pessoa.setCursoDesejado(editText_nomeCurso.getText().toString());
             pessoa.setTelefoneContato(editTExt_telefoneContato.getText().toString());
 
-            Toast.makeText(MainActivity.this, pessoa.toString(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, pessoa.toString(), Toast.LENGTH_SHORT).show();
+
+            controller.salvar(pessoa);
         });
         button_finalizar.setOnClickListener(v -> finish());
     }
