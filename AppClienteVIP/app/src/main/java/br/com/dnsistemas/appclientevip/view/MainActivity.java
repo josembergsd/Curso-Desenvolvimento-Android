@@ -48,7 +48,15 @@ public class MainActivity extends AppCompatActivity {
         initComponents();
         enviaDadosParaTela();
 
-        button_limpar.setOnClickListener(v -> clearFields());
+        button_limpar.setOnClickListener(v -> {
+            editText_primeiroNome.setText("");
+            editText_sobrenome.setText("");
+            editText_nomeCurso.setText("");
+            editText_telefoneContato.setText("");
+
+            listaVip.clear();
+            listaVip.apply();
+        });
 
         button_salvar.setOnClickListener(v -> {
             Pessoa pessoa = new Pessoa();
@@ -69,13 +77,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         button_finalizar.setOnClickListener(v -> finish());
-    }
-
-    private void clearFields() {
-        editText_primeiroNome.setText("");
-        editText_sobrenome.setText("");
-        editText_nomeCurso.setText("");
-        editText_telefoneContato.setText("");
     }
 
     private void enviaDadosParaTela() {
