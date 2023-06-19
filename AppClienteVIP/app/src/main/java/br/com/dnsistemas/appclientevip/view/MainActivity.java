@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor listaVip = preferences.edit();
 
         pessoa = new Pessoa();
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome", ""));
-        pessoa.setSobrenome(preferences.getString("sobrenome", ""));
-        pessoa.setCursoDesejado(preferences.getString("nomeCurso", ""));
-        pessoa.setTelefoneContato(preferences.getString("telefoneContato", ""));
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome", "NA"));
+        pessoa.setSobrenome(preferences.getString("sobrenome", "NA"));
+        pessoa.setCursoDesejado(preferences.getString("nomeCurso", "NA"));
+        pessoa.setTelefoneContato(preferences.getString("telefoneContato", "NA"));
 
         controller = new PessoaContoller();
 
