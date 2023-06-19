@@ -37,14 +37,18 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences(NOME_PREFERENCES, 0);
         SharedPreferences.Editor listaVip = preferences.edit();
 
+        pessoa = new Pessoa();
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome", ""));
+        pessoa.setSobrenome(preferences.getString("sobrenome", ""));
+        pessoa.setCursoDesejado(preferences.getString("nomeCurso", ""));
+        pessoa.setTelefoneContato(preferences.getString("telefoneContato", ""));
+
         controller = new PessoaContoller();
-        //Mock de Pessoa
-        pessoa = new Pessoa("Josemberg", "Sousa Duarte", "Android", "86-99920-8114");
+
         initComponents();
         enviaDadosParaTela();
 
         button_limpar.setOnClickListener(v -> clearFields());
-
 
         button_salvar.setOnClickListener(v -> {
             Pessoa pessoa = new Pessoa();
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             controller.salvar(pessoa);
         });
+
         button_finalizar.setOnClickListener(v -> finish());
     }
 
