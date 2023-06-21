@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         controller = new PessoaController(MainActivity.this);
-        controller.toString();
 
         pessoa = new Pessoa();
         controller.buscar(pessoa);
