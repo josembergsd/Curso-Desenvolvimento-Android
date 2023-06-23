@@ -39,10 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         controller = new PessoaController(MainActivity.this);
         cursoController = new CursoController();
-        nomeDosCursos = cursoController.dadosParaSpinner();
-
         pessoa = new Pessoa();
-
+        
+        nomeDosCursos = cursoController.dadosParaSpinner();
         controller.buscar(pessoa);
 
         initComponents();
@@ -77,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void populaAdapter() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cursoController.dadosParaSpinner());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1,
+                cursoController.dadosParaSpinner());
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         spinner.setAdapter(adapter);
     }
