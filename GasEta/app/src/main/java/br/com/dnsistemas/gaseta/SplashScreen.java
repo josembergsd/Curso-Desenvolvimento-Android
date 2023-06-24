@@ -1,4 +1,4 @@
-package br.com.dnsistemas.appclientevip.view;
+package br.com.dnsistemas.gaseta;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,25 +6,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import br.com.dnsistemas.appclientevip.R;
-
-public class SplashActivity extends AppCompatActivity {
+public class SplashScreen extends AppCompatActivity {
 
     public static final int TIME_OUT_SPLASH = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splash_screen);
 
-        cumutarTelaSplash();
-
+        comutarTelaSplash();
     }
 
-    private void cumutarTelaSplash() {
+    private void comutarTelaSplash() {
 
         new Handler().postDelayed(() -> {
-            Intent telaPrincipal = new Intent(SplashActivity.this, MainActivity.class);
+            Intent telaPrincipal = new Intent(SplashScreen.this, MainActivity.class);
             startActivity(telaPrincipal);
             finish();
         }, TIME_OUT_SPLASH);

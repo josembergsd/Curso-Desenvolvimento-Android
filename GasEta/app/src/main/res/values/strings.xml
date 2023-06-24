@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">GasEta</string>
+    <string name="textview_titulo_splash">Gasolina x Etanol</string>
+</resources>
