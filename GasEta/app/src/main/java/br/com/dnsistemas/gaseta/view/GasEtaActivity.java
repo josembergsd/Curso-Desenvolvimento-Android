@@ -1,16 +1,21 @@
-package br.com.dnsistemas.gaseta;
+package br.com.dnsistemas.gaseta.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import br.com.dnsistemas.gaseta.R;
+import br.com.dnsistemas.gaseta.apoio.Util;
+import br.com.dnsistemas.gaseta.controller.CombustivelController;
+import br.com.dnsistemas.gaseta.model.Combustivel;
 
+public class GasEtaActivity extends AppCompatActivity {
+
+    CombustivelController controller;
     EditText editGasolina, editEtanol;
     TextView textResultado;
     Button buttonCalcular, buttonLimpar, buttonSalvar, buttonFinalizar;
@@ -26,10 +31,26 @@ public class MainActivity extends AppCompatActivity {
 
         initComponents();
         limparCampos();
+        controller = new CombustivelController(GasEtaActivity.this);
 
+        buttonCalcular.setOnClickListener(v -> {
+            if(validaCampo()) {
+                buttonSalvar.setEnabled(true);
+                textResultado.setText(
+                        Util.calcualrMelhorOpcao(
+                                Double.parseDouble(editGasolina.getText().toString()),
+                                Double.parseDouble(editEtanol.getText().toString())
+                        )
+                );
+            }else {
+                buttonSalvar.setEnabled(false);
+            }
+        });
 
-        //TODO: Desabilitar o botão salvar
         buttonSalvar.setOnClickListener(v -> {
+
+
+            //TODO: EditText inputType
             combustivelGasolina = new Combustivel();
             combustivelEtanol = new Combustivel();
 
@@ -42,18 +63,11 @@ public class MainActivity extends AppCompatActivity {
             combustivelGasolina.setRecomendacao(Util.calcualrMelhorOpcao(precoGasolina, precoEtanol));
             combustivelEtanol.setRecomendacao(Util.calcualrMelhorOpcao(precoGasolina, precoEtanol));
 
-            int parada = 0;
-        });
+            controller.salvar(combustivelGasolina);
+            controller.salvar(combustivelEtanol);
+            limparCampos();
 
-        buttonCalcular.setOnClickListener(v -> {
-            if(validaCampo()) {
-                textResultado.setText(
-                        Util.calcualrMelhorOpcao(
-                                Double.parseDouble(editGasolina.getText().toString()),
-                                Double.parseDouble(editEtanol.getText().toString())
-                        )
-                );
-            }
+            int parada = 0;
         });
 
         buttonLimpar.setOnClickListener(v -> limparCampos());
@@ -66,15 +80,19 @@ public class MainActivity extends AppCompatActivity {
         editGasolina.setText("");
         editEtanol.setText("");
         textResultado.setText(R.string.textView_resultado);
+        buttonSalvar.setEnabled(false);
+        controller.limpar();
     }
 
     private boolean validaCampo() {
         if(editGasolina.getText().toString().trim().equals("")){
-            Toast.makeText(this, "Campo preço Gasolina obrigatório", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Campo preço Gasolina obrigatório",
+                    Toast.LENGTH_SHORT).show();
             return false;
         }
         if(editEtanol.getText().toString().trim().equals("")){
-            Toast.makeText(this, "Campo preço Etanol obrigatório", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Campo preço Etanol obrigatório",
+                    Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

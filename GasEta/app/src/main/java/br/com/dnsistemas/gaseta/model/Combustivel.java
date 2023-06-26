@@ -1,4 +1,4 @@
-package br.com.dnsistemas.gaseta;
+package br.com.dnsistemas.gaseta.model;
 
 public class Combustivel {
 
