@@ -2,6 +2,7 @@ package br.com.dnsistemas.gaseta;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
     TextView textResultado;
     Button buttonCalcular, buttonLimpar, buttonSalvar, buttonFinalizar;
 
+    Combustivel combustivelGasolina;
+    Combustivel combustivelEtanol;
+    Double precoGasolina, precoEtanol;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +27,22 @@ public class MainActivity extends AppCompatActivity {
         initComponents();
         limparCampos();
 
-        buttonSalvar.setOnClickListener(v -> {
 
+        //TODO: Desabilitar o botão salvar
+        buttonSalvar.setOnClickListener(v -> {
+            combustivelGasolina = new Combustivel();
+            combustivelEtanol = new Combustivel();
+
+            combustivelGasolina.setNomeDoCombustivel("Gasolina");
+            combustivelGasolina.setPrecoDoCombustivel(precoGasolina);
+
+            combustivelEtanol.setNomeDoCombustivel("Etanol");
+            combustivelEtanol.setPrecoDoCombustivel(precoEtanol);
+
+            combustivelGasolina.setRecomendacao(Util.calcualrMelhorOpcao(precoGasolina, precoEtanol));
+            combustivelEtanol.setRecomendacao(Util.calcualrMelhorOpcao(precoGasolina, precoEtanol));
+
+            int parada = 0;
         });
 
         buttonCalcular.setOnClickListener(v -> {
