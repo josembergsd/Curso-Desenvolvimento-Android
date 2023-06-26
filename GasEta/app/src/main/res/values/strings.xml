@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">GasEta</string>
     <string name="textview_titulo_splash">Gasolina x Etanol</string>
+    <string name="textView_hint_gasolina">R$ Gasolina</string>
+    <string name="textView_hint_etanol">R$ Etanol</string>
+    <string name="textView_resultado">RESULTADO</string>
 </resources>

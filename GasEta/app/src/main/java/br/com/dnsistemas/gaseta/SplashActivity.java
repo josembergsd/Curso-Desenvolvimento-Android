@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     public static final int TIME_OUT_SPLASH = 3000;
 
@@ -21,7 +21,7 @@ public class SplashScreen extends AppCompatActivity {
     private void comutarTelaSplash() {
 
         new Handler().postDelayed(() -> {
-            Intent telaPrincipal = new Intent(SplashScreen.this, MainActivity.class);
+            Intent telaPrincipal = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(telaPrincipal);
             finish();
         }, TIME_OUT_SPLASH);
