@@ -1,10 +1,12 @@
-package br.com.dnsistemas.gaseta;
+package br.com.dnsistemas.gaseta.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import br.com.dnsistemas.gaseta.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -21,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
     private void comutarTelaSplash() {
 
         new Handler().postDelayed(() -> {
-            Intent telaPrincipal = new Intent(SplashActivity.this, MainActivity.class);
+            Intent telaPrincipal = new Intent(SplashActivity.this, GasEtaActivity.class);
             startActivity(telaPrincipal);
             finish();
         }, TIME_OUT_SPLASH);
