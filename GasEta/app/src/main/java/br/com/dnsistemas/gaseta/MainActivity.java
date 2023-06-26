@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
             if(validaCampo()) {
                 textResultado.setText(
                         Util.calcualrMelhorOpcao(
-                                Double.parseDouble(
-                                        editGasolina.getText().toString()),
+                                Double.parseDouble(editGasolina.getText().toString()),
                                 Double.parseDouble(editEtanol.getText().toString())
                         )
                 );
