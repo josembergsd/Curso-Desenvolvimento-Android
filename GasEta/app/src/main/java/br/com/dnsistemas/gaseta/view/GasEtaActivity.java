@@ -19,10 +19,8 @@ public class GasEtaActivity extends AppCompatActivity {
     EditText editGasolina, editEtanol;
     TextView textResultado;
     Button buttonCalcular, buttonLimpar, buttonSalvar, buttonFinalizar;
-
-    Combustivel combustivelGasolina;
-    Combustivel combustivelEtanol;
-    Double precoGasolina, precoEtanol;
+    Combustivel combustivelGasolina, combustivelEtanol, combustivel;
+    Double precoGasolina = 5.45, precoEtanol = 4.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +47,6 @@ public class GasEtaActivity extends AppCompatActivity {
 
         buttonSalvar.setOnClickListener(v -> {
 
-
-            //TODO: EditText inputType
             combustivelGasolina = new Combustivel();
             combustivelEtanol = new Combustivel();
 
@@ -65,12 +61,19 @@ public class GasEtaActivity extends AppCompatActivity {
 
             controller.salvar(combustivelGasolina);
             controller.salvar(combustivelEtanol);
+
+         /*   combustivel = new Combustivel();
+            combustivel = Util.calcualrMelhorOpcao(precoGasolina, precoEtanol);
+            controller.salvar(combustivel);*/
             limparCampos();
 
             int parada = 0;
         });
 
-        buttonLimpar.setOnClickListener(v -> limparCampos());
+        buttonLimpar.setOnClickListener(v -> {
+            limparCampos();
+            controller.limpar();
+        });
 
         buttonFinalizar.setOnClickListener(v -> {finish();});
 
@@ -81,7 +84,6 @@ public class GasEtaActivity extends AppCompatActivity {
         editEtanol.setText("");
         textResultado.setText(R.string.textView_resultado);
         buttonSalvar.setEnabled(false);
-        controller.limpar();
     }
 
     private boolean validaCampo() {

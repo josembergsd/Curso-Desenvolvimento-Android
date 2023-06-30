@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import br.com.dnsistemas.gaseta.R;
+import br.com.dnsistemas.gaseta.database.GasEtaDb;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -23,6 +24,10 @@ public class SplashActivity extends AppCompatActivity {
     private void comutarTelaSplash() {
 
         new Handler().postDelayed(() -> {
+
+            GasEtaDb db = new GasEtaDb(this);
+            db.getWritableDatabase();
+
             Intent telaPrincipal = new Intent(SplashActivity.this, GasEtaActivity.class);
             startActivity(telaPrincipal);
             finish();
