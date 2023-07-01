@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.com.dnsistemas.gaseta.R;
 import br.com.dnsistemas.gaseta.apoio.Util;
 import br.com.dnsistemas.gaseta.controller.CombustivelController;
@@ -20,7 +22,9 @@ public class GasEtaActivity extends AppCompatActivity {
     TextView textResultado;
     Button buttonCalcular, buttonLimpar, buttonSalvar, buttonFinalizar;
     Combustivel combustivelGasolina, combustivelEtanol, combustivel;
-    Double precoGasolina = 5.45, precoEtanol = 4.0;
+    Double precoGasolina, precoEtanol;
+
+    List<Combustivel> dados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class GasEtaActivity extends AppCompatActivity {
         initComponents();
         limparCampos();
         controller = new CombustivelController(GasEtaActivity.this);
+        dados = controller.getListaDeDados();
 
         buttonCalcular.setOnClickListener(v -> {
             if(validaCampo()) {
@@ -38,7 +43,7 @@ public class GasEtaActivity extends AppCompatActivity {
                         Util.calcualrMelhorOpcao(
                                 Double.parseDouble(editGasolina.getText().toString()),
                                 Double.parseDouble(editEtanol.getText().toString())
-                        )
+                        ).getRecomendacao()
                 );
             }else {
                 buttonSalvar.setEnabled(false);
@@ -47,24 +52,11 @@ public class GasEtaActivity extends AppCompatActivity {
 
         buttonSalvar.setOnClickListener(v -> {
 
-            combustivelGasolina = new Combustivel();
-            combustivelEtanol = new Combustivel();
-
-            combustivelGasolina.setNomeDoCombustivel("Gasolina");
-            combustivelGasolina.setPrecoDoCombustivel(precoGasolina);
-
-            combustivelEtanol.setNomeDoCombustivel("Etanol");
-            combustivelEtanol.setPrecoDoCombustivel(precoEtanol);
-
-            combustivelGasolina.setRecomendacao(Util.calcualrMelhorOpcao(precoGasolina, precoEtanol));
-            combustivelEtanol.setRecomendacao(Util.calcualrMelhorOpcao(precoGasolina, precoEtanol));
-
-            controller.salvar(combustivelGasolina);
-            controller.salvar(combustivelEtanol);
-
-         /*   combustivel = new Combustivel();
+            combustivel = new Combustivel();
+            precoGasolina = Double.parseDouble(editGasolina.getText().toString());
+            precoEtanol= Double.parseDouble(editEtanol.getText().toString());
             combustivel = Util.calcualrMelhorOpcao(precoGasolina, precoEtanol);
-            controller.salvar(combustivel);*/
+            controller.salvar(combustivel);
             limparCampos();
 
             int parada = 0;
@@ -75,7 +67,7 @@ public class GasEtaActivity extends AppCompatActivity {
             controller.limpar();
         });
 
-        buttonFinalizar.setOnClickListener(v -> {finish();});
+        buttonFinalizar.setOnClickListener(v -> finish());
 
     }
 

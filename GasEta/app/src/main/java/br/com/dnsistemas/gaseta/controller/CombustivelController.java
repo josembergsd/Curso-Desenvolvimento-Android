@@ -3,6 +3,8 @@ package br.com.dnsistemas.gaseta.controller;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
 
+import java.util.List;
+
 import br.com.dnsistemas.gaseta.database.GasEtaDb;
 import br.com.dnsistemas.gaseta.model.Combustivel;
 import br.com.dnsistemas.gaseta.view.GasEtaActivity;
@@ -23,20 +25,38 @@ public class CombustivelController extends GasEtaDb{
 
         ContentValues dados = new ContentValues();
         //SharedPreferences
-        dadosPreferences.putString("combustivel", combustivel.getNomeDoCombustivel());
-        dadosPreferences.putFloat("preco",(float) combustivel.getPrecoDoCombustivel());
+        dadosPreferences.putString("nomeDoCombustivel", combustivel.getNomeDoCombustivel());
+        dadosPreferences.putFloat("precoDoCombustivel",(float) combustivel.getPrecoDoCombustivel());
         dadosPreferences.putString("recomendacao", combustivel.getRecomendacao());
         dadosPreferences.apply();
 
         //Banco de Dados
         dados.put("nomeDoCombustivel", combustivel.getNomeDoCombustivel());
-        dados.put("preco", combustivel.getPrecoDoCombustivel());
+        dados.put("precoDoCombustivel", combustivel.getPrecoDoCombustivel());
         dados.put("recomendacao", combustivel.getRecomendacao());
 
         salvarObjeto("Combustivel", dados);
 
     }
 
+    public List<Combustivel> getListaDeDados(){
+        return listarDados();
+    }
+
+    public void alterarDados(Combustivel combustivel){
+        ContentValues dados = new ContentValues();
+        //Banco de Dados
+        dados.put("id", combustivel.getId());
+        dados.put("nomeDoCombustivel", combustivel.getNomeDoCombustivel());
+        dados.put("precoDoCombustivel", combustivel.getPrecoDoCombustivel());
+        dados.put("recomendacao", combustivel.getRecomendacao());
+
+        alterarObjeto("Combustivel", dados);
+    }
+
+    public void excluirDados(){
+
+    }
     public void limpar(){
         dadosPreferences.clear();
         dadosPreferences.apply();
