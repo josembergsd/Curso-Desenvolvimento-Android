@@ -4,7 +4,7 @@ import br.com.dnsistemas.gaseta.model.Combustivel;
 
 public class Util {
 
-    public static String calcualrMelhorOpcao(double gasolina, double etanol){
+    public static Combustivel calcualrMelhorOpcao(double gasolina, double etanol){
 
         Combustivel combustivel = new Combustivel();
 
@@ -23,8 +23,8 @@ public class Util {
             mensagemDeRetorno = "Abastecer com Gasolina";
         }
 
-        return mensagemDeRetorno;
-       // return combustivel;
+        //return mensagemDeRetorno;
+        return combustivel;
     }
 
 }
