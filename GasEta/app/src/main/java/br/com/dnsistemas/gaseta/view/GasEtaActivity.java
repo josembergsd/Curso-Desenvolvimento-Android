@@ -36,6 +36,7 @@ public class GasEtaActivity extends AppCompatActivity {
         controller = new CombustivelController(GasEtaActivity.this);
         dados = controller.getListaDeDados();
 
+        controller.excluirDados(5);
         buttonCalcular.setOnClickListener(v -> {
             if(validaCampo()) {
                 buttonSalvar.setEnabled(true);
