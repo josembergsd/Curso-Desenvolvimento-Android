@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import br.com.dnsistemas.appbasekotlin.databinding.FragmentCadastroVeiculoBinding
 
-class CadastroVeiculoFragment : Fragment() {
+class VeiculoFragment : Fragment() {
 
     private var _binding: FragmentCadastroVeiculoBinding? = null
 
@@ -22,14 +22,14 @@ class CadastroVeiculoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val cadastroVeiculoViewModel =
-            ViewModelProvider(this).get(CadastroVeiculoViewModel::class.java)
+        val veiculoViewModel =
+            ViewModelProvider(this).get(VeiculoViewModel::class.java)
 
         _binding = FragmentCadastroVeiculoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textGallery
-        cadastroVeiculoViewModel.text.observe(viewLifecycleOwner) {
+        veiculoViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

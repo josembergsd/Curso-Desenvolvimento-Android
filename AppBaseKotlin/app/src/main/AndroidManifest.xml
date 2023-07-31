@@ -7,9 +7,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
@@ -24,6 +24,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppBaseKotlin"
         tools:targetApi="31">
+        <activity
+            android:name=".view.CameraX"
+            android:exported="false"
+            android:label="@string/title_activity_camera_x"
+            android:theme="@style/Theme.AppBaseKotlin" />
         <activity
             android:name=".view.HomeActivity"
             android:exported="false"
