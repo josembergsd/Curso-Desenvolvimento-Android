@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         pessoa = new Pessoa();
 
         nomeDosCursos = cursoController.dadosParaSpinner();
-        controller.buscarDadosSharedPreferences(pessoa);
+        controller.buscar(pessoa);
 
         initComponents();
         enviaDadosParaTela();
